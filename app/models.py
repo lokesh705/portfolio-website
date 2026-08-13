@@ -41,7 +41,9 @@ class Project(db.Model):
             "title": self.title,
             "tagline": self.tagline,
             "description": self.description,
-            "tech_stack": [t.strip() for t in (self.tech_stack or "").split(",") if t.strip()],
+            "tech_stack": [
+                t.strip() for t in (self.tech_stack or "").split(",") if t.strip()
+            ],
             "github_url": self.github_url,
             "demo_url": self.demo_url,
             "image_url": self.image_url,

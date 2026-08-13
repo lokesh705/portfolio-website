@@ -147,7 +147,10 @@ def contact():
     if not (name and email and body):
         return jsonify({"error": "name, email and body are required"}), 400
     message = Message(
-        name=name, email=email, subject=(payload.get("subject") or "").strip(), body=body
+        name=name,
+        email=email,
+        subject=(payload.get("subject") or "").strip(),
+        body=body,
     )
     db.session.add(message)
     db.session.commit()

@@ -69,8 +69,18 @@ EDUCATION = [
 ]
 
 CERTIFICATES = [
-    {"name": "Machine Learning Specialization", "issuer": "Coursera", "issue_date": "2024", "position": 0},
-    {"name": "Python for Data Science", "issuer": "NPTEL", "issue_date": "2023", "position": 1},
+    {
+        "name": "Machine Learning Specialization",
+        "issuer": "Coursera",
+        "issue_date": "2024",
+        "position": 0,
+    },
+    {
+        "name": "Python for Data Science",
+        "issuer": "NPTEL",
+        "issue_date": "2023",
+        "position": 1,
+    },
 ]
 
 ABOUT = {

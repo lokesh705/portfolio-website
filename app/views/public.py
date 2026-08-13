@@ -15,7 +15,9 @@ def index():
     categories: dict[str, list[Skill]] = {}
     for skill in skills:
         categories.setdefault(skill.category or "General", []).append(skill)
-    education = Education.query.order_by(Education.position.asc(), Education.id.asc()).all()
+    education = Education.query.order_by(
+        Education.position.asc(), Education.id.asc()
+    ).all()
     certificates = Certificate.query.order_by(
         Certificate.position.asc(), Certificate.id.asc()
     ).all()
