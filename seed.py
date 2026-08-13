@@ -9,32 +9,35 @@ PROJECTS = [
         "title": "Travel Mate AI",
         "tagline": "AI travel companion that plans personalised itineraries",
         "description": (
-            "An AI-powered trip planner that generates day-by-day itineraries from a "
-            "destination, budget and travel style, with live place recommendations and "
-            "an interactive chat assistant."
+            "A full-stack travel app for discovering tourist places, checking real-time "
+            "weather, finding nearby hotels, restaurants and cafes, and saving favourite "
+            "destinations."
         ),
-        "tech_stack": "Python, Flask, LLM APIs, React, SQLite",
+        "tech_stack": "React, Node.js, Express, MongoDB, Geoapify, OpenWeather",
+        "github_url": "https://github.com/lokesh705/TravelMateAI",
         "featured": True,
         "position": 0,
     },
     {
         "title": "AI Job Recommendation",
-        "tagline": "Resume-aware job matching engine",
+        "tagline": "Resume-aware job matching and fake-job detection",
         "description": (
-            "Parses a candidate resume, embeds skills and experience, and ranks open "
-            "roles by semantic similarity with explainable match scores."
+            "Extracts skills from a resume, scores job matches with TF-IDF and cosine "
+            "similarity, detects fake postings, and pulls real-time listings from job APIs."
         ),
-        "tech_stack": "Python, NLP, scikit-learn, Flask, Pandas",
+        "tech_stack": "Python, Flask, NLP, scikit-learn, JavaScript",
+        "github_url": "https://github.com/lokesh705/AI-resume-centric-job-recommendation-and-fake-job-detction-system-using-ML",
         "position": 1,
     },
     {
         "title": "Flight Price Prediction",
-        "tagline": "ML model forecasting airfare trends",
+        "tagline": "GAN + LSTM hybrid forecasting airfare trends",
         "description": (
-            "Regression models trained on historical fare data to predict ticket prices "
-            "from route, airline, stops and booking window, served through a web app."
+            "Airfare prediction system combining generative adversarial networks with LSTM "
+            "to forecast dynamic ticket prices from historical fare data."
         ),
-        "tech_stack": "Python, scikit-learn, XGBoost, Flask, Matplotlib",
+        "tech_stack": "Python, TensorFlow, GAN, LSTM, Flask",
+        "github_url": "https://github.com/lokesh705/AI-Flight-price-prediction-using-GAN-and-LSTM-hybrid-models",
         "position": 2,
     },
 ]
