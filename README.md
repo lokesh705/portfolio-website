@@ -22,6 +22,13 @@ python run.py             # http://localhost:5000
 The database is created automatically at `instance/portfolio.db` on first run, along with an
 admin user from `ADMIN_USERNAME` / `ADMIN_PASSWORD` (defaults `admin` / `admin123` — change these).
 
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## API
 
 | Method | Endpoint | Auth | Description |
