@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+<div class="admin-shell">
+  <header class="admin-header">
+    <h1>Portfolio Admin</h1>
+    <div class="actions">
+      <a href="{{ url_for('public.index') }}" target="_blank">View site</a>
+      <a href="{{ url_for('admin.logout') }}">Logout</a>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    <p class="status {{ 'err' if category == 'error' else 'ok' }}">{{ message }}</p>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="stats">
+    <div class="stat"><strong>{{ counts.projects }}</strong><span>Projects</span></div>
+    <div class="stat"><strong>{{ counts.certificates }}</strong><span>Certificates</span></div>
+    <div class="stat"><strong>{{ counts.skills }}</strong><span>Skills</span></div>
+    <div class="stat"><strong>{{ counts.education }}</strong><span>Education</span></div>
+    <div class="stat"><strong>{{ counts.messages }}</strong><span>Messages</span></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-panel="projects">Projects</button>
+    <button class="tab" data-panel="certificates">Certificates</button>
+    <button class="tab" data-panel="skills">Skills</button>
+    <button class="tab" data-panel="education">Education</button>
+    <button class="tab" data-panel="about">About</button>
+    <button class="tab" data-panel="resume">Resume</button>
+  </div>
+
+  <section class="panel active" id="panel-projects">
+    <div class="panel-head">
+      <h2>Projects</h2>
+      <button class="btn primary" data-new="projects">Add project</button>
+    </div>
+    <table><thead><tr><th>Title</th><th>Tech</th><th>Featured</th><th>Order</th><th></th></tr></thead>
+      <tbody id="rows-projects"></tbody></table>
+  </section>
+
+  <section class="panel" id="panel-certificates">
+    <div class="panel-head">
+      <h2>Certificates</h2>
+      <button class="btn primary" data-new="certificates">Add certificate</button>
+    </div>
+    <table><thead><tr><th>Name</th><th>Issuer</th><th>Date</th><th>Order</th><th></th></tr></thead>
+      <tbody id="rows-certificates"></tbody></table>
+  </section>
+
+  <section class="panel" id="panel-skills">
+    <div class="panel-head">
+      <h2>Skills</h2>
+      <button class="btn primary" data-new="skills">Add skill</button>
+    </div>
+    <table><thead><tr><th>Name</th><th>Category</th><th>Level</th><th>Order</th><th></th></tr></thead>
+      <tbody id="rows-skills"></tbody></table>
+  </section>
+
+  <section class="panel" id="panel-education">
+    <div class="panel-head">
+      <h2>Education</h2>
+      <button class="btn primary" data-new="education">Add education</button>
+    </div>
+    <table><thead><tr><th>Institution</th><th>Degree</th><th>Years</th><th>Order</th><th></th></tr></thead>
+      <tbody id="rows-education"></tbody></table>
+  </section>
+
+  <section class="panel" id="panel-about">
+    <div class="panel-head"><h2>About &amp; profile</h2></div>
+    <form id="about-form" class="form-grid">
+      <label>Full name<input name="full_name" value="{{ about.full_name }}"></label>
+      <label>Headline<input name="headline" value="{{ about.headline }}"></label>
+      <label class="full">Hero subtitle<input name="hero_subtitle" value="{{ about.hero_subtitle }}"></label>
+      <label class="full">Bio<textarea name="bio" rows="5">{{ about.bio }}</textarea></label>
+      <label>Email<input name="email" value="{{ about.email }}"></label>
+      <label>Phone<input name="phone" value="{{ about.phone }}"></label>
+      <label>Location<input name="location" value="{{ about.location }}"></label>
+      <label>GitHub URL<input name="github_url" value="{{ about.github_url }}"></label>
+      <label>LinkedIn URL<input name="linkedin_url" value="{{ about.linkedin_url }}"></label>
+      <div class="full dialog-actions">
+        <span id="about-status" class="status"></span>
+        <button class="btn primary" type="submit">Save about</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel" id="panel-resume">
+    <div class="panel-head"><h2>Resume</h2></div>
+    <p class="meta">
+      {% if about.resume_filename %}
+      Current: <a href="{{ url_for('public.resume') }}" target="_blank">{{ about.resume_filename }}</a>
+      {% else %}No resume uploaded yet.{% endif %}
+    </p>
+    <form method="post" action="{{ url_for('admin.upload_resume') }}" enctype="multipart/form-data" class="contact-form">
+      <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+      <button class="btn primary" type="submit">Upload resume</button>
+    </form>
+  </section>
+</div>
+
+<dialog id="editor">
+  <h3 id="editor-title">Edit</h3>
+  <form id="editor-form" method="dialog">
+    <div id="editor-fields" class="form-grid"></div>
+    <div class="dialog-actions">
+      <button class="btn" type="button" id="editor-cancel">Cancel</button>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>
